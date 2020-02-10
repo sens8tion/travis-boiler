@@ -1,5 +1,6 @@
 HOST=127.0.0.1
 TEST_PATH=./
+MY_PROJECT="boondobble"
 
 clean-pyc:
 	find . -name '*.pyc' -exec rm --force {} +
@@ -26,9 +27,8 @@ run:
 docker-run:
 	docker build \
 		--file=./Dockerfile \
-		--tag=my_project ./
+		--tag=$(MY_PROJECT) ./
 	docker run \
 		--detach=false \
-		--name=my_project \
-		--publish=$(HOST):8080 \
-		my_project
+		--name=$(MY_PROJECT) \
+		$(MY_PROJECT)
